@@ -1,6 +1,8 @@
 @FakePinterest-Gabarito
 Cria_Banco_Flask.py
 teste.py
+fakepinterest/static/*.jpg
+fakepinterest/static/fotos_posts/*.jpg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
