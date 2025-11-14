@@ -2,10 +2,13 @@
 from flask import render_template, url_for, redirect
 from fakepinterest import app, database, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
-from fakepinterest.forms import FormLogin, FormCriarConta, FormFoto
-from fakepinterest.models import Usuario, Foto
 from werkzeug.utils import secure_filename
 import os
+
+from fakepinterest.forms import FormLogin, FormCriarConta, FormFoto
+from fakepinterest.models import Usuario, Foto
+
+
 
 @app.route("/", methods=["GET", "POST"])
 def homepage():

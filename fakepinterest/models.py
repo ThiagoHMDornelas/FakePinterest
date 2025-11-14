@@ -1,8 +1,10 @@
 # criar estrutura do banco
-from fakepinterest import database, login_manager
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from flask_login import UserMixin
+
+from fakepinterest import database, login_manager
+
 
 
 @login_manager.user_loader
