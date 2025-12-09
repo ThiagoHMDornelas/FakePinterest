@@ -6,7 +6,6 @@ from flask_login import UserMixin
 from fakepinterest import database, login_manager
 
 
-
 @login_manager.user_loader
 def load_usuario(id_usuario):
     return Usuario.query.get(int(id_usuario))

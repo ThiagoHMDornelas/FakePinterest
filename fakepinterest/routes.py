@@ -1,13 +1,12 @@
 # criar as rotas para o site (os links)
+import os
 from flask import render_template, url_for, redirect
-from fakepinterest import app, database, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from werkzeug.utils import secure_filename
-import os
 
+from fakepinterest import app, database, bcrypt
 from fakepinterest.forms import FormLogin, FormCriarConta, FormFoto
 from fakepinterest.models import Usuario, Foto
-
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -27,9 +26,8 @@ def criarconta():
     form_criar_conta = FormCriarConta()
     if form_criar_conta.validate_on_submit():
         senha = bcrypt.generate_password_hash(form_criar_conta.senha.data).decode("utf-8")
-        usuario = Usuario(username = form_criar_conta.username.data,
-                          email = form_criar_conta.email.data,
-                          senha = senha)
+        usuario = Usuario(username=form_criar_conta.username.data, email=form_criar_conta.email.data, senha=senha)
+
         database.session.add(usuario)
         database.session.commit()
         login_user(usuario, remember=True)
@@ -59,8 +57,8 @@ def perfil(id_usuario):
 
         return render_template("perfil.html", usuario=current_user, form=form_foto)
     else:
-       usuario = Usuario.query.get(int(id_usuario))
-       return render_template("perfil.html", usuario=usuario, form=None)
+        usuario = Usuario.query.get(int(id_usuario))
+        return render_template("perfil.html", usuario=usuario, form=None)
 
 
 @app.route("/logout")
@@ -73,5 +71,5 @@ def logout():
 @app.route("/feed")
 @login_required
 def feed():
-     fotos = Foto.query.order_by(Foto.data_criacao.desc()).all()
-     return render_template("feed.html", fotos=fotos)
+    fotos = Foto.query.order_by(Foto.data_criacao.desc()).all()
+    return render_template("feed.html", fotos=fotos)
