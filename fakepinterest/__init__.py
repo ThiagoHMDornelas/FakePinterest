@@ -20,4 +20,4 @@ login_manager.login_view = 'homepage'  # passar o nome do route q gerencia o log
 # login.login_message = 'faça o login para continuar'
 # login.login_message_category = 'alert-info'
 
-# from fakepinterest import routes
+from fakepinterest import routes  # noqa: E402,F401 (import necessário para registrar rotas)
