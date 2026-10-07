@@ -8,7 +8,7 @@ from fakepinterest import database, login_manager
 
 @login_manager.user_loader
 def load_usuario(id_usuario):
-    return Usuario.query.get(int(id_usuario))
+    return database.session.get(Usuario, int(id_usuario))
 
 
 class Usuario(database.Model, UserMixin):
@@ -22,5 +22,5 @@ class Usuario(database.Model, UserMixin):
 class Foto(database.Model):
     id = database.Column(database.Integer, primary_key=True)
     imagem = database.Column(database.String, default="default.png")
-    data_criacao = database.Column(database.DateTime, nullable=False, default=datetime.now(ZoneInfo("America/Sao_Paulo")))
+    data_criacao = database.Column(database.DateTime, nullable=False, default=lambda: datetime.now(ZoneInfo("America/Sao_Paulo")))
     id_usuario = database.Column(database.Integer, database.ForeignKey('usuario.id'), nullable=False)

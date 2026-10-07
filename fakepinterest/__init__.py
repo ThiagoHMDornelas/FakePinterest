@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()  # Carrega as variáveis do .env local
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'e09cd9eddebc52208c670ea53536bf90'
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "dev-fakepinterest-secret-key")
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL", "sqlite:///comunidade.db")
 app.config["UPLOAD_FOLDER"] = "static/fotos_posts"
 

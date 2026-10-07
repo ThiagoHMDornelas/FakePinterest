@@ -57,7 +57,7 @@ def perfil(id_usuario):
 
         return render_template("perfil.html", usuario=current_user, form=form_foto)
     else:
-        usuario = Usuario.query.get(int(id_usuario))
+        usuario = database.session.get(Usuario, int(id_usuario))
         return render_template("perfil.html", usuario=usuario, form=None)
 
 
