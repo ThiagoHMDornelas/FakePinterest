@@ -6,12 +6,36 @@
   <body>
       <div class="container">
           <div class="conteudo">
-              {% for foto in fotos %}
+              {% for foto in fotos.items %}
                 <a href="{{ url_for('perfil', id_usuario=foto.id_usuario) }}" class="bloco-imagem">
                     <img src="{{ url_for('static', filename='fotos_posts/{}'.format(foto.imagem)) }}" />
                 </a>
               {% endfor %}
           </div>
+
+          {% if fotos.pages > 1 %}
+          <nav class="paginacao">
+              {% if fotos.has_prev %}
+                  <a href="{{ url_for('feed', page=fotos.prev_num) }}" class="link-paginacao">Anterior</a>
+              {% endif %}
+
+              {% for pagina in fotos.iter_pages() %}
+                  {% if pagina %}
+                      {% if pagina == fotos.page %}
+                          <span class="pagina-atual">{{ pagina }}</span>
+                      {% else %}
+                          <a href="{{ url_for('feed', page=pagina) }}" class="link-paginacao">{{ pagina }}</a>
+                      {% endif %}
+                  {% else %}
+                      <span class="reticencias">...</span>
+                  {% endif %}
+              {% endfor %}
+
+              {% if fotos.has_next %}
+                  <a href="{{ url_for('feed', page=fotos.next_num) }}" class="link-paginacao">Próxima</a>
+              {% endif %}
+          </nav>
+          {% endif %}
       </div>
   </body>
 

@@ -31,9 +31,9 @@ O **FakePinterest** é uma aplicação web de compartilhamento de imagens constr
 
 - Cadastro de usuário (com validação de e-mail e confirmação de senha)
 - Login e logout
-- Upload de fotos no perfil do usuário
+- Upload de fotos no perfil do usuário (com validação de formato e limite de 4 MB)
 - Página de perfil com as fotos do usuário
-- Feed com as fotos de todos os usuários (mais recentes primeiro)
+- Feed com as fotos de todos os usuários (mais recentes primeiro), com paginação
 - Proteção de rotas para usuários autenticados
 
 ## Tecnologias
@@ -222,7 +222,7 @@ O que **não** dá para fazer pela interface gráfica: clonar o repositório e r
 
 ## Testes
 
-A suíte de testes cobre as rotas principais (homepage, cadastro, feed e proteção de acesso). Execute:
+A suíte de testes cobre rotas, autenticação, formulários (validações), upload de fotos e paginação do feed. Execute:
 
     pytest
 

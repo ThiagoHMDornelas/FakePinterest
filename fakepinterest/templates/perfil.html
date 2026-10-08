@@ -22,6 +22,14 @@
                   <span id="imagem-arquivo" class=""></span>
               </div>
 
+              {% if form.foto.errors %}
+                  {% for erro in form.foto.errors %}
+                      <p style="color: red">{{ erro }}</p>
+                  {% endfor %}
+              {% endif %}
+
+              <p id="erro-tamanho" style="color: red"></p>
+
               {{ form.botao_confirmacao(class="botao-login") }}
             </form>
         {% else %}
@@ -40,13 +48,30 @@
     </div>
 
     <script>
-        let input = document.getElementById("foto");
-        let imagemArquivo = document.getElementById("imagem-arquivo");
+        const MAX_BYTES = 4 * 1024 * 1024;
+        const input = document.getElementById("foto");
+        const imagemArquivo = document.getElementById("imagem-arquivo");
+        const formulario = document.querySelector("form.bloco-add-img");
+        const erroTamanho = document.getElementById("erro-tamanho");
 
-        input.addEventListener("change", () => {let inputImagem = document.querySelector("input[type=file]").files[0];
-                    imagemArquivo.classList.add("visivel");
-                    imagemArquivo.innerText = inputImagem.name;
-        });
+        if (input) {
+            input.addEventListener("change", () => {
+                const arquivo = input.files[0];
+                imagemArquivo.classList.add("visivel");
+                imagemArquivo.innerText = arquivo ? arquivo.name : "";
+                erroTamanho.innerText = "";
+            });
+        }
+
+        if (formulario) {
+            formulario.addEventListener("submit", (evento) => {
+                const arquivo = input.files[0];
+                if (arquivo && arquivo.size > MAX_BYTES) {
+                    evento.preventDefault();
+                    erroTamanho.innerText = "A imagem deve ter no máximo 4 MB.";
+                }
+            });
+        }
     </script>
 </body>
 {% endblock %}
