@@ -3,7 +3,7 @@ services:
     build: .
     command: sh -c "python cria_banco.py && gunicorn -w 2 -b 0.0.0.0:5000 main:app"
     ports:
-      - "5000:5000"
+      - "8011:5000"
     environment:
       - SECRET_KEY=flask-insecure-docker-development-key
       - DATABASE_URL=sqlite:///comunidade.db

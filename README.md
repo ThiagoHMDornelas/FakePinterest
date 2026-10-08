@@ -150,7 +150,7 @@ A forma recomendada de rodar a aplicação. O Docker Compose sobe o serviço já
 - Docker Desktop instalado e em execução (engine)
 - Docker Compose (já vem com o Docker Desktop)
 - Git instalado (para clonar o repositório)
-- A porta `5000` livre
+- A porta `8011` livre
 
 > **Importante:** o Docker Desktop sozinho **não** faz o setup inicial — ele é o *engine* e o painel de gerenciamento. Clonar o repositório e rodar `docker compose up --build` são feitos pelo **terminal**; o Docker Desktop é ótimo para acompanhar logs, iniciar/parar e abrir um terminal dentro do container **depois** que a stack subiu.
 
@@ -183,11 +183,11 @@ Espere o serviço `web` como `Up`.
 
 | Serviço | Porta | Acesso |
 |---|---|---|
-| `web` | 5000 | `http://localhost:5000` |
+| `web` | 8011 | `http://localhost:8011` |
 
 **4. Acesse a aplicação:**
 
-- Aplicação: `http://localhost:5000/`
+- Aplicação: `http://localhost:8011/`
 
 O banco e as tabelas são criados automaticamente na inicialização. Não há superusuário: crie sua conta pela tela **Criar conta**.
 
@@ -208,7 +208,7 @@ Depois que a stack estiver no ar (passo 2), o Docker Desktop ajuda a operar. Na 
 - **Logs**: clique no container → aba *Logs* (equivale a `docker compose logs`).
 - **Start / Stop / Restart**: botões no topo do container.
 - **Terminal no container**: botão *Exec* (útil para depurar dentro do container).
-- **Abrir no navegador**: clique na porta publicada (`5000:5000`).
+- **Abrir no navegador**: clique na porta publicada (`8011:5000`).
 
 O que **não** dá para fazer pela interface gráfica: clonar o repositório e rodar `docker compose up --build` em um clone novo (isso é feito pelo terminal).
 
@@ -217,7 +217,7 @@ O que **não** dá para fazer pela interface gráfica: clonar o repositório e r
 - **A aplicação não abre**
   - Veja os logs: `docker compose logs -f web`
   - Confirme que o container está `Up`: `docker compose ps`
-- **Erro de porta em uso** (`5000`) → pare o serviço que ocupa a porta ou ajuste o mapeamento no `docker-compose.yml` (ex.: `5001:5000`) e acesse em `http://localhost:5001`
+- **Erro de porta em uso** (`8011`) → pare o serviço que ocupa a porta ou ajuste o mapeamento no `docker-compose.yml` (ex.: `8012:5000`) e acesse em `http://localhost:8012`
 - **Os dados sumiram após reiniciar** → é esperado: o SQLite fica dentro do container e não persiste após um `docker compose down`
 
 ## Testes
