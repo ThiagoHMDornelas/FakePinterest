@@ -9,9 +9,14 @@
 
 Rede social de compartilhamento de imagens inspirada no Pinterest, desenvolvida com Flask. Usuários podem criar conta, fazer login, enviar fotos para o próprio perfil e visualizar as imagens de todos no feed.
 
+![Página de login do FakePinterest](docs/img/fakepinterest_home.png)
+
+*Página de login — inspirada no Pinterest.*
+
 ## Sumário
 
 - [Visão geral](#visão-geral)
+- [Telas do projeto](#telas-do-projeto)
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias](#tecnologias)
 - [Estrutura do projeto](#estrutura-do-projeto)
@@ -26,6 +31,16 @@ Rede social de compartilhamento de imagens inspirada no Pinterest, desenvolvida 
 ## Visão geral
 
 O **FakePinterest** é uma aplicação web de compartilhamento de imagens construída com Flask (templates Jinja2 e rotas organizadas em um pacote). O visitante cria uma conta, faz login e envia fotos para o próprio perfil; a página de feed reúne as imagens publicadas por todos os usuários. A autenticação usa Flask-Login e as senhas são armazenadas com hash (Flask-Bcrypt).
+
+## Telas do projeto
+
+**Feed** — fotos de todos os usuários, mais recentes primeiro, com paginação:
+
+![Feed](docs/img/fakepinterest_feed.png)
+
+**Perfil** — fotos do usuário e envio de novas imagens:
+
+![Perfil](docs/img/fakepinterest_profile.png)
 
 ## Funcionalidades
 
